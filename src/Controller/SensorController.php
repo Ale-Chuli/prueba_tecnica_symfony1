@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SensorsRepository;
+
 
 
 use App\Entity\Sensors;
@@ -18,7 +20,7 @@ use Doctrine\ORM\EntityManager;
 class SensorController extends AbstractController
 {
     #[Route('/register', name: 'sensor_register')]
-    public function SensorRegister(Request $request): JsonResponse
+    public function SensorRegister(Request $request, EntityManagerInterface $em): Response
     {
         $body = $request->getContent();
         $data = json_decode($body, true);
@@ -26,8 +28,19 @@ class SensorController extends AbstractController
         $sensor = new Sensors();
 
         $sensor->setName($data['name']);
+
+        $em-> persist($sensor);
+        $em->flush();
     
         return $this->json("Sensor has been registered correctly", Response::HTTP_CREATED);
         
+    }
+
+    #[Route('/get', name: 'sensors_get')]
+    public function SensorInfo(SensorsRepository $sensorsrep):Response{
+        
+        $sensors = $sensorsrep->findAllOrderedByName();
+
+        return $this->json($sensors);
     }
 }

@@ -57,4 +57,5 @@ class UserController extends AbstractController
         }
         return $this -> json("User doesn't exists", Response::HTTP_CREATED);
     }
+
 }

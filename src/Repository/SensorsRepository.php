@@ -30,6 +30,14 @@ class SensorsRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
+    
+    public function findAllOrderedByName(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?Sensors
     //    {
