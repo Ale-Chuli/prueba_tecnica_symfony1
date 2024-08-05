@@ -37,7 +37,8 @@ class SensorController extends AbstractController
     }
 
     #[Route('/get', name: 'sensors_get')]
-    public function SensorInfo(SensorsRepository $sensorsrep):Response{
+    public function SensorInfo(SensorsRepository $sensorsrep):Response
+    {
         
         $sensors = $sensorsrep->findAllOrderedByName();
 
