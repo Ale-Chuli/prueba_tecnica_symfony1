@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use Nelmio\ApiDocBundle\Annotation as Nelmio;
+
+
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SensorsRepository;
 
@@ -17,9 +20,10 @@ use App\Entity\Sensors;
 use Doctrine\ORM\EntityManager;
 
 #[Route('/sensor', name: 'sensor')]
+// #[Nelmio\Areas(['public'])]
 class SensorController extends AbstractController
 {
-    #[Route('/register', name: 'sensor_register')]
+    #[Route('/register', name: 'sensor_register', methods: ['POST'])]
     public function SensorRegister(Request $request, EntityManagerInterface $em): Response
     {
         $body = $request->getContent();
@@ -36,7 +40,7 @@ class SensorController extends AbstractController
         
     }
 
-    #[Route('/get', name: 'sensors_get')]
+    #[Route('/get', name: 'sensors_get',methods: ['GET'])]
     public function SensorInfo(SensorsRepository $sensorsrep):Response
     {
         

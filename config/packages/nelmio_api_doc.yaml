@@ -1,0 +1,20 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: API Docs
+            description: This is an awesome app!
+            version: 1.0.0
+        components:
+            schemas:
+                UsersInfo:
+                    type: object
+                    properties:
+                        email: {type: string, example: "example123@gmail.com"}
+                        password: {type: string, example: "example123"}
+
+    areas: # to filter documented areas
+        default:
+            path_patterns:
+                - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+        public:
+            with_annotation: true
