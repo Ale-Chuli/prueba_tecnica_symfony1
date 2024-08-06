@@ -20,12 +20,12 @@ use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/user', name: 'user')]
-#[Nelmio\Areas(['public'])]
+#[Nelmio\Areas(['wines_project'])]
 #[OA\Tag('Users')]
 class UserController extends AbstractController
 {
     #[Route('/register', name: 'user_register', methods: ['POST'])]
-    #[OA\RequestBody(required: true, content: new OA\JsonContent(ref:'#/components/schemas/UsersInfo'))]
+    #[OA\RequestBody(required: true, content: new OA\JsonContent(ref:'#/components/schemas/UserLogin'))]
     public function userRegister(EntityManagerInterface $em, Request $request,
      UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -50,7 +50,7 @@ class UserController extends AbstractController
     }
 
     #[Route("/login", name:"user_login", methods: ['POST'])]
-    #[OA\RequestBody(required: true, content: new OA\JsonContent(ref:'#/components/schemas/UsersInfo'))]
+    #[OA\RequestBody(required: true, content: new OA\JsonContent(ref:'#/components/schemas/UserLogin'))]
     public function userLogin(UsersRepository $userrep, Request $request,
     UserPasswordHasherInterface $passwordHasher):Response
     {

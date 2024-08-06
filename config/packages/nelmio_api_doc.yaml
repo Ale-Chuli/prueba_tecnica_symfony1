@@ -6,15 +6,20 @@ nelmio_api_doc:
             version: 1.0.0
         components:
             schemas:
-                UsersInfo:
+                UserLogin:
                     type: object
                     properties:
                         email: {type: string, example: "example123@gmail.com"}
                         password: {type: string, example: "example123"}
+                
+                SensorRegister:
+                    type: object
+                    properties:
+                        name: {type: string, example: "ExampleSensor"}
 
     areas: # to filter documented areas
         default:
             path_patterns:
                 - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
-        public:
+        wines_project:
             with_annotation: true
