@@ -26,7 +26,10 @@ class WineMeditions
     private ?string $colour = null;
 
     #[ORM\Column]
-    private ?int $alcohol_percentage = null;
+    private ?int $temperature = null;
+
+    #[ORM\Column]
+    private ?int $alcoholPercentage = null;
 
     #[ORM\Column]
     private ?int $ph = null;
@@ -84,14 +87,26 @@ class WineMeditions
         return $this;
     }
 
-    public function getAlcoholPercentage(): ?int
+    public function getTemperature(): ?int
     {
-        return $this->alcohol_percentage;
+        return $this->temperature;
     }
 
-    public function setAlcoholPercentage(int $alcohol_percentage): static
+    public function setTemperature(int $temperature): static
     {
-        $this->alcohol_percentage = $alcohol_percentage;
+        $this->temperature = $temperature;
+
+        return $this;
+    }
+
+    public function getAlcoholPercentage(): ?int
+    {
+        return $this->alcoholPercentage;
+    }
+
+    public function setAlcoholPercentage(int $alcoholPercentage): static
+    {
+        $this->alcoholPercentage = $alcoholPercentage;
 
         return $this;
     }

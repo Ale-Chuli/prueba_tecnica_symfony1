@@ -43,7 +43,7 @@ class WineController extends AbstractController
             'WineName' => $wine, 
             'Year' => $medition->getYear(), 
             'Color' => $medition->getColour(), 
-            //'Temperature' => $medition->getTemperature(), 
+            'Temperature' => $medition->getTemperature(), 
             'Graduation' => $medition->getAlcoholPercentage(), 
             'Ph' => $medition->getPh() 
         ];
@@ -66,6 +66,7 @@ class WineController extends AbstractController
             $medition->setIdsensor($data["id_sensor"]);
             $medition->setIdwine($data["id_wine"]);
             $medition->setColour($data["colour"]);
+            $medition->setTemperature($data["temperature"]);
             $medition->setAlcoholPercentage($data["alcohol_percentage"]);
             $medition->setPh($data["ph"]);
 
@@ -77,7 +78,7 @@ class WineController extends AbstractController
         }else if($sensorsrep->findBy(["id"=> $data["id_sensor"]]) && !$winesrep->findBy(["id"=> $data["id_wine"]])){
             return $this->json("Can't create the new medition, error on inputed ID_wine");
         }else if(!$sensorsrep->findBy(["id"=> $data["id_sensor"]]) && $winesrep->findBy(["id"=> $data["id_wine"]])){
-        return $this->json("Can't create the new medition, error on inputed ID_sensor");
+            return $this->json("Can't create the new medition, error on inputed ID_sensor");
         }else{
             return $this->json("Can't create the new medition, error on inputed IDs");
         }

@@ -24,7 +24,7 @@ nelmio_api_doc:
                         id_sensor: {type: integer, example: 6}
                         id_wine: {type: integer, example: 3}
                         colour: {type: string, example: "Red"}
-                        # temperature: {type: integer, example: 20}
+                        temperature: {type: integer, example: 20}
                         alcohol_percentage: {type: integer, example: 17}
                         ph: {type: integer, example: 6}
 
