@@ -48,10 +48,10 @@ class SensorController extends AbstractController
         $sensors = $sensorsrep->findAllOrderedByName();
         
         $sensorsInfo = [];
-    foreach ($sensors as $sensor) {
-        $sensorsInfo[] = [
-            'ID' => $sensor->getId(),
-            'Name' => $sensor->getName()
+        foreach ($sensors as $sensor) {
+            $sensorsInfo[] = [
+                'ID' => $sensor->getId(),
+                'Name' => $sensor->getName()
         ];
     }
         return $this->json(['All Sensors Ordered by Name'=>$sensorsInfo]);
